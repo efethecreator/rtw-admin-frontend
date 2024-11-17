@@ -4,8 +4,6 @@ import logo from "../assets/iviewlogo.png";
 import axios from "axios";
 import useQuestionStore from "../store/questionStore";
 import { FaSignOutAlt } from "react-icons/fa"; // React Icons'dan çıkış ikonunu içe aktarıyoruz
-import dotenv from "dotenv";
-dotenv.config();
 
 
 const AdminLayout = () => {
@@ -23,7 +21,7 @@ const AdminLayout = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        process.env.BASE_URL + "/api/admin/logout",
+        "/api/admin/logout",
         {},
         { withCredentials: true }
       );
