@@ -9,7 +9,7 @@ const useUserStore = create((set) => ({
     name: "",
     surname: "",
     email: "",
-    phone: ""
+    phone: "",
   },
   loading: false,
   error: null,
@@ -23,11 +23,11 @@ const useUserStore = create((set) => ({
   submitPersonalInfo: async () => {
     set({ loading: true });
     try {
-      const response = await axios.post("http://localhost:8000/api/users/create", {
+      const response = await axios.post("/api/users/create", {
         name: personalInfo.name,
         surname: personalInfo.surname,
         email: personalInfo.email,
-        phone: personalInfo.phone
+        phone: personalInfo.phone,
       });
       console.log("User created:", response.data);
       set({ loading: false });

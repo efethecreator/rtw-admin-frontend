@@ -1,6 +1,5 @@
-import { create } from 'zustand';
-import axios from 'axios';
-
+import { create } from "zustand";
+import axios from "axios";
 
 const useAdminLoginStore = create((set) => ({
   loading: false,
@@ -10,22 +9,26 @@ const useAdminLoginStore = create((set) => ({
   loginAdmin: async (email, password, navigate) => {
     set({ loading: true });
     try {
-      const response = await axios.post('http://localhost:8000/api/admin/login', {
-        email,
-        password,
-      }, {
-        withCredentials: true, // Cookieleri iletmek için gerekli
-      });
-      
+      const response = await axios.post(
+        "/api/admin/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true, // Cookieleri iletmek için gerekli
+        }
+      );
+
       // Eğer başarılı giriş olursa, admin dashboard'a yönlendirme yap
       if (response.status === 200) {
-        navigate('/admin-dashboard');
+        navigate("/admin-dashboard");
       }
-      
+
       set({ loading: false });
     } catch (error) {
       set({
-        error: error.response?.data?.message || 'Giriş başarısız!',
+        error: error.response?.data?.message || "Giriş başarısız!",
         loading: false,
       });
     }

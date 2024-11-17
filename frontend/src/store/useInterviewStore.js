@@ -14,7 +14,7 @@ const useInterviewStore = create((set) => ({
   fetchInterviews: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get("http://localhost:8000/api/interview/", {
+      const response = await axios.get("/api/interview/", {
         withCredentials: true,
       });
       set({ interviews: response.data, loading: false });
@@ -29,7 +29,7 @@ const useInterviewStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/interview/create",
+        "/api/interview/create",
         interviewData,
         {
           withCredentials: true,
@@ -55,7 +55,7 @@ const useInterviewStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/interview/${id}
+        `/api/interview/${id}
       }`,
         {
           withCredentials: true,
@@ -71,12 +71,9 @@ const useInterviewStore = create((set) => ({
   fetchInterviewQuestions: async (id) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(
-        `http://localhost:8000/api/interview/${id}/questions`,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`/api/interview/${id}/questions`, {
+        withCredentials: true,
+      });
       set({ interviewQuestions: response.data.questions, loading: false });
     } catch (error) {
       set({ error: "Failed to fetch interview questions", loading: false });
@@ -87,7 +84,7 @@ const useInterviewStore = create((set) => ({
   deleteInterview: async (id) => {
     set({ loading: true });
     try {
-      await axios.delete(`http://localhost:8000/api/interview/delete/${id}`, {
+      await axios.delete(`/api/interview/delete/${id}`, {
         withCredentials: true,
       });
       set((state) => ({

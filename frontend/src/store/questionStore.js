@@ -12,7 +12,7 @@ const useQuestionStore = create((set) => ({
   fetchQuestionPackages: async () => {
     set({ loading: true });
     try {
-      const response = await axios.get("http://localhost:8000/api/packages", {
+      const response = await axios.get("/api/packages", {
         withCredentials: true,
       });
       set({ questionPackages: response.data, loading: false });
@@ -29,7 +29,7 @@ const useQuestionStore = create((set) => ({
     set({ loading: true });
     console.log("title");
     try {
-      const response = await axios.post("http://localhost:8000/api/packages", {
+      const response = await axios.post("/api/packages", {
         title,
       });
       console.log("deneme");
@@ -52,7 +52,7 @@ const useQuestionStore = create((set) => ({
     try {
       console.log("1");
       const response = await axios.post(
-        `http://localhost:8000/api/packages/${packageId}/questions`,
+        `/api/packages/${packageId}/questions`,
         {
           question,
           time,
@@ -79,7 +79,7 @@ const useQuestionStore = create((set) => ({
     console.log("updatedData", updatedData);
     try {
       const response = await axios.put(
-        `http://localhost:8000/api/packages/${packageId}`,
+        `/api/packages/${packageId}`,
         updatedData
       );
       set((state) => ({
@@ -100,7 +100,7 @@ const useQuestionStore = create((set) => ({
   deleteQuestionPackage: async (packageId) => {
     set({ loading: true });
     try {
-      await axios.delete(`http://localhost:8000/api/packages/${packageId}`);
+      await axios.delete(`/api/packages/${packageId}`);
       set((state) => ({
         questionPackages: state.questionPackages.filter(
           (pkg) => pkg._id !== packageId
@@ -120,7 +120,7 @@ const useQuestionStore = create((set) => ({
     set({ loading: true });
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/packages/${packageId}/questions/${questionId}`
+        `/api/packages/${packageId}/questions/${questionId}`
       );
       set((state) => ({
         questionPackages: state.questionPackages.map((pkg) =>

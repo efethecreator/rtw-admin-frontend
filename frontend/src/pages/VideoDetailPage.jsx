@@ -23,14 +23,12 @@ const VideoDetailPage = () => {
 
         if (video) {
           // Kullanıcı bilgilerini al
-          const userResponse = await axios.get(
-            `http://localhost:8000/api/users/${video.userId}`
-          );
+          const userResponse = await axios.get(`/api/users/${video.userId}`);
           setUserInfo(userResponse.data);
 
           // Soru paketini al
           const questionPackageResponse = await axios.get(
-            `http://localhost:8000/api/question-packages/${video.questionPackageId}`
+            `/api/question-packages/${video.questionPackageId}`
           );
           setQuestionPackage(questionPackageResponse.data);
         }

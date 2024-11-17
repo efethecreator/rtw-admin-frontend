@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useVideoStore from "../store/useVideoCollectionStore";
 import axios from "axios";
-import myImage from '../assets/intw1.png';
+import myImage from "../assets/intw1.png";
 
 const VideoCollection = () => {
   const { videos, fetchVideos } = useVideoStore();
@@ -38,7 +38,7 @@ const VideoCollection = () => {
     console.log({ videoId, userId, pass, fail, note });
     console.log(videos);
     try {
-      const response = await axios.put(`http://localhost:8000/api/videos`, {
+      const response = await axios.put(`/api/videos`, {
         interviewId,
         videoId,
         userId,
@@ -87,9 +87,9 @@ const VideoCollection = () => {
               className="bg-gradient-to-br from-[#B1D1CB] to-transparent backdrop-blur-2xl rounded-xl p-4 shadow-xl relative flex flex-col justify-between"
             >
               <div>
-              <img
-              src={myImage}
-                className="w-full h-48 rounded-md mb-4 object-cover"
+                <img
+                  src={myImage}
+                  className="w-full h-48 rounded-md mb-4 object-cover"
                 />
                 <h3 className="text-lg font-semibold text-gray-800">
                   {video.user?.name} {video.user?.surname}
@@ -186,7 +186,9 @@ const VideoCollection = () => {
 
             {/* Note Section */}
             <div className="mb-4">
-              <label className="block text-lg font-semibold mb-2 text-gray-700">Note</label>
+              <label className="block text-lg font-semibold mb-2 text-gray-700">
+                Note
+              </label>
               <textarea
                 value={note}
                 val={note}

@@ -9,21 +9,15 @@ const useVideoStore = create((set) => ({
   // Videoları interviewId'ye göre getir
   fetchVideos: async (interviewId) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8000/api/videos/${interviewId}`,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`/api/videos/${interviewId}`, {
+        withCredentials: true,
+      });
       console.log(response.data);
       const videoData = await Promise.all(
         response.data.map(async (video) => {
-          const userResponse = await axios.get(
-            `http://localhost:8000/api/users/${video.userId}`,
-            {
-              withCredentials: true,
-            }
-          );
+          const userResponse = await axios.get(`/api/users/${video.userId}`, {
+            withCredentials: true,
+          });
           return { ...video, user: userResponse.data };
         })
       );
@@ -38,7 +32,7 @@ const useVideoStore = create((set) => ({
   fetchQuestions: async (interviewId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/interviews/${interviewId}/questions`
+        `/api/interviews/${interviewId}/questions`
       );
       set({ questions: response.data.questions });
     } catch (error) {
@@ -54,13 +48,9 @@ const useVideoStore = create((set) => ({
     formData.append("interviewId", interviewId);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/videos",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await axios.post("/api/videos", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       set((state) => ({
         videos: [...state.videos, response.data],
       }));
@@ -72,7 +62,7 @@ const useVideoStore = create((set) => ({
   // Video sil
   deleteVideo: async (videoId, interviewId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/videos/${videoId}`, {
+      await axios.delete(`/api/videos/${videoId}`, {
         data: { interviewId },
       });
 

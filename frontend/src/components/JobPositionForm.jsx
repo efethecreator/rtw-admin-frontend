@@ -367,13 +367,12 @@ const JobPositionForm = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { fetchVideos } = useVideoStore();
   const interviewsPerPage = 15;
-  
 
   // Soru paketlerini yükleme ve mülakatları güncelleme
   useEffect(() => {
     const loadQuestionPackages = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/packages", {
+        const response = await axios.get("/api/packages", {
           withCredentials: true,
         });
         const data = response.data;
@@ -492,19 +491,19 @@ const JobPositionForm = () => {
               </motion.button>
             </div>
             <div className="relative max-w-[300px] group">
-  {/* Kartın ana bölümü */}
-  <div
-    className="text-black font-semibold mb-2 mt-5 text-2xl truncate overflow-hidden"
-    title={interview.title} // Bu özellik, yazıyı tarayıcıda da gösterir.
-  >
-    {interview.title}
-  </div>
+              {/* Kartın ana bölümü */}
+              <div
+                className="text-black font-semibold mb-2 mt-5 text-2xl truncate overflow-hidden"
+                title={interview.title} // Bu özellik, yazıyı tarayıcıda da gösterir.
+              >
+                {interview.title}
+              </div>
 
-  {/* Tooltip */}
-  <div className="absolute hidden group-hover:block bg-gray-800 text-white text-sm p-2 rounded-lg shadow-lg top-full mt-2 left-1/2 transform -translate-x-1/2 z-10">
-    {interview.title}
-  </div>
-</div>
+              {/* Tooltip */}
+              <div className="absolute hidden group-hover:block bg-gray-800 text-white text-sm p-2 rounded-lg shadow-lg top-full mt-2 left-1/2 transform -translate-x-1/2 z-10">
+                {interview.title}
+              </div>
+            </div>
             <p className="text-sm mb-2">Candidates:</p>
             <div className="bg-gray-300 rounded-lg p-2 flex justify-around mb-4">
               <div className="text-center border-l border-gray-400">
