@@ -9,7 +9,7 @@ const JobPositionList = ({ jobPositions, viewVideos, deleteJobPosition }) => {
         withCredentials: true, // Çerez bilgileri ile istek yapılmasını sağlıyor
       });
       const interviewLink = response.data.interviewLink;
-      const fullLink = `http://localhost:5000/${interviewLink}`; // Pointing to the user frontend
+      const fullLink = `https://rtw-user-frontend-smoky.vercel.app/${interviewLink}`; // Pointing to the user frontend
 
       navigator.clipboard.writeText(fullLink);
       alert("Interview link copied to clipboard!");

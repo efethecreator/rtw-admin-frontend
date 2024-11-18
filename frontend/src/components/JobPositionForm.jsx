@@ -405,7 +405,7 @@ const JobPositionForm = () => {
       alert("Bu mülakat süresi dolmuş. Link kopyalanamaz.");
       return;
     }
-    const link = `http://localhost:5000/${interview._id}`;
+    const link = `https://rtw-user-frontend-smoky.vercel.app/${interview._id}`;
     navigator.clipboard.writeText(link);
     alert("Link kopyalandı!");
   };
